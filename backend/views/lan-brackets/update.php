@@ -10,6 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Lan Brackets', 'url' => ['index']]
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
+
 <div class="lan-brackets-update">
 
     <h1><?= Html::encode($this->title) ?></h1>

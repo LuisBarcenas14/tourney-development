@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\LanBrackets */
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'tid',
-            'json:ntext',
+            //'json:ntext',
         ],
     ]) ?>
 
@@ -53,7 +54,45 @@ echo '<script type="text/javascript">
     
     console.log("que pedo");
     </script>';
+
+echo 'Valor de get: '.Yii::$app->request->get('LanBrackets').'---'.Yii::$app->request->get('id');
 ?>
 
 <div id="autoComplete">    
 </div>
+
+<?php 
+//Pjax::begin();
+if(Yii::$app->request->post('data'))
+{
+  $mysqli = new mysqli("localhost", "root", "vientos", "yii2advanced");
+
+  echo 'vas bien';
+  
+  $id = Yii::$app->request->get('id');
+  $json = Yii::$app->request->post('data');
+  echo "modificado su json es: ".$json."<br>";
+
+  $q = "SELECT * FROM lan_brackets WHERE id = " . $id;
+  $r = $mysqli->query($q);
+
+  echo 'antes de consulta ';
+  if($r->num_rows == 0){
+    echo 'insertar ';
+    $q = "INSERT INTO lan_brackets (tid, json)
+          VALUES ('".$tid."', '".$json."')";
+  }
+  else{
+    echo 'actualizar ';
+    $q = "UPDATE lan_brackets SET json = '".$json."' WHERE id = " . $id;
+  }
+  echo 'durante consulta ';
+  $r = $mysqli->query($q);
+  echo 'despues de consulta ';
+
+  //*/
+}
+//Pjax::end();
+?>
+
+

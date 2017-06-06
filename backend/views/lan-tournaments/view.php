@@ -51,3 +51,33 @@ echo '<script type="text/javascript">
 
 <div id="autoComplete">    
 </div>
+<?php 
+if($_POST['data'])//&& $_GET['secretMode'] == "inlanadminmode")
+{
+  echo "enviado :)";
+  $mysqli = new mysqli("localhost", "root", "vientos", "bracket_db");
+
+  $tid = $_GET['tid'];
+  $json = $_POST['data'];
+  echo "modificado su json es: ".$json."<br>";
+
+  $q = "SELECT * FROM lan_brackets WHERE tid = " . $tid;
+  $r = $mysqli->query($q);
+
+  echo 'antes de consulta ';
+  if($r->num_rows == 0){
+    echo 'insertar ';
+    $q = "INSERT INTO lan_brackets (tid, json)
+          VALUES ('".$tid."', '".$json."')";
+  }
+  else{
+    echo 'actualizar ';
+    $q = "UPDATE lan_brackets SET json = '".$json."' WHERE tid = " . $tid;
+  }
+  echo 'durante consulta ';
+  $r = $mysqli->query($q);
+  echo 'despues de consulta ';
+}
+
+?>
+ ?>

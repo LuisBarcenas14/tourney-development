@@ -52,15 +52,22 @@ function acEditFn(container, data, doneCb) {
 function saveFn(data, userData) {
   var json = jQuery.toJSON(data)
   console.log('json es: '+json)             
-  $.post("index.php?secretMode="+retParam("secretMode")+"&tid="+ retParam("tid"), {'data':json});                                
+  //$.post("index.php?secretMode="+retParam("secretMode")+"&tid="+ retParam("tid"), {'data':json});                               
+  //$.post(("index.php?",{'data':json});                               
+  //$.post("index.php?r=lan-brackets%2Fview&"+"",{'data':json});                               
+  //$.post("index.php",{'data':json});                      
+  $.post("index.php?r=lan-brackets%2Fview"+"&id="+ retParam("id"), {'data':json});                               
 
 } 
- 
+
 function  retParam(name)
-{ var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    return results[1] || 0;
+{ 
+  //var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+  var results = new RegExp('[&]' + name + '=([^&#]*)').exec(window.location.href);
+  return results[1] || 0;
 }     
- 
+
+
 function acRenderFn(container, data, score, state) {
     if(state=='empty-bye'){
       container.append('BYE')
@@ -92,5 +99,8 @@ function generarBracket(){
 }
 
 $(document).ready(function(){
+
   generarBracket();
+  //$json1={"teams":[["Luis","Rony"],["Jorge","Dan"]],"results":[[[[10,0],[0,1]],[[1,0]]],[[[1,0]],[[null,null]]],[[[null,null]]]]};
+  //$.post("index.php?r=lan-brackets%2Fview&id=9",{'data':$json1});
 });
