@@ -61,33 +61,18 @@ echo '
 //Pjax::begin();
 if(Yii::$app->request->post('data'))
 {
-  $mysqli = new mysqli("localhost", "root", "vientos", "yii2advanced");
-
-  echo 'vas bien';
-  
+ // echo 'vas bien';
   $id = Yii::$app->request->get('id');
-  echo 'id: '.Yii::$app->request->get('id');
+  //echo 'id: '.Yii::$app->request->get('id');
   $json = Yii::$app->request->post('data');
-  echo "modificado su json es: ".$json."<br>";
+  
+  //echo "modificado su json es: ".$json."<br>";
 
-  $q = "SELECT * FROM tournaments WHERE tournament_id = " . $id;
-  $r = $mysqli->query($q);
-
-  echo 'antes de consulta ';
-  if($r->num_rows == 0){
-    echo 'insertar ';
-    $q = "INSERT INTO tournaments (id, json)
-          VALUES ('".$id."', '".$json."')";
-  }
-  else{
-    echo 'actualizar ';
-    $q = "UPDATE tournaments SET tournament_json = '".$json."' WHERE tournament_id = " . $id;
-  }
-  echo 'durante consulta ';
-  $r = $mysqli->query($q);
-  echo 'despues de consulta ';
-
-  //*/
+  $connection = Yii::$app->getDb();
+  $command = $connection->createCommand(
+    "UPDATE tournaments SET tournament_json = '".$json."' WHERE tournament_id = " . $id
+  );
+  $result = $command->queryAll();
 }
 //Pjax::end();
 ?>
