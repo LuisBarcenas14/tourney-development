@@ -44,21 +44,13 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <?php   
-echo '<script type="text/javascript">
-    /*var autoCompleteData = {
-    teams : [["Null", ""],["", ""]], results : []};
-    */
-    var autoCompleteData = '.$model->json.';
-    //generarBracket()
-
-    
-    console.log("que pedo");
+echo '
+	<script type="text/javascript">
+    	var autoCompleteData = '.$model->json.';
     </script>';
-
-echo 'Valor de get: '.Yii::$app->request->get('LanBrackets').'---'.Yii::$app->request->get('id');
 ?>
-
-<div id="autoComplete">    
+<button id="reset-bracket">Reset</button>
+<div id="autoComplete" name="admin">    
 </div>
 
 <?php 

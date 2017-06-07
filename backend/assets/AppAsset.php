@@ -15,6 +15,7 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/jquery-ui.min.css',
         'css/jquery.bracket.min.css',
+        'css/main.css',
         //'css/home.css',
         //'css/home-video.css',
     ];
