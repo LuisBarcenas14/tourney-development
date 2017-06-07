@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\widgets\Pjax;
@@ -11,7 +12,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Lan Brackets', 'url' => ['index']]
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-
 <?php 
 //echo '<script type="text/javascript">var autoCompleteData = '."".'</script>'; 
 
@@ -42,8 +42,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
-
-<!-->Agregar desde aqui </-->
 
 <?php   
 echo '
