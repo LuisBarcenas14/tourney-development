@@ -31,7 +31,8 @@ class Tournaments extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tournament_name', 'tournament_json'], 'required'],
+            [['tournament_name', 'tournament_json','tournament_admin'], 'required'],
+            [['tournament_admin'], 'integer'],
             [['tournament_description', 'tournament_status', 'tournament_json'], 'string'],
             [['tournament_start_date', 'tournament_end_date'], 'safe'],
             [['tournament_name'], 'string', 'max' => 100],
@@ -46,6 +47,7 @@ class Tournaments extends \yii\db\ActiveRecord
         return [
             'tournament_id' => 'Tournament ID',
             'tournament_name' => 'Tournament Name',
+            'tournament_admin' => 'Tournament Admin',
             'tournament_description' => 'Tournament Description',
             'tournament_status' => 'Tournament Status',
             'tournament_start_date' => 'Tournament Start Date',

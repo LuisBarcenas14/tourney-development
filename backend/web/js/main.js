@@ -18,7 +18,8 @@ function saveFn(data, userData) {
   var json = jQuery.toJSON(data)
   //console.log('userData:'+userData)
   //console.log('json es: '+json)             
-  $.post("index.php?r=lan-brackets%2Fview"+"&id="+ retParam("id"), {'data':json});
+  //$.post("index.php?r=lan-brackets%2Fview"+"&id="+ retParam("id"), {'data':json});
+  $.post("index.php?r=tournaments%2Fview"+"&id="+ retParam("id"), {'data':json});
   autoCompleteData = data;                                
 
 } 
@@ -194,8 +195,10 @@ function verBracket(){
 
 $(document).ready(function() {
   
-  console.log('hi 2^2 = '+pot2(4))
-  console.log(autoCompleteData)
+  
+  
+  //console.log(autoCompleteData)
+  console.log('hi')
   if($('#autoComplete').attr('name')=="admin"){
     generarBracket();
   }else if($('#autoComplete').attr('name')=="view"){
@@ -210,6 +213,7 @@ $(document).ready(function() {
     console.log('click en O')
     //ordenarEq()
   });
+  
 })
 
 /*
